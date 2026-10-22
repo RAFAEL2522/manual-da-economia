@@ -80,6 +80,7 @@ nav ul {
     padding: 0;
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -99,6 +100,7 @@ footer {
     border-top: 1px solid #e1e4e8;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .btn {
