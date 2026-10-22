@@ -94,6 +94,7 @@ nav a:hover {
 }
 
 /* Rodapé e Botões */
+/* Rodapé e Botões */
 footer {
     margin-top: 40px;
     padding-top: 20px;
@@ -101,7 +102,9 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 16px; /* Mantém um espaço de segurança se a tela for pequena */
 }
+
 
 .btn {
     display: inline-block;
