@@ -1,157 +1,393 @@
-/* Reset básico e tipografia */
+/* 
+  Bloco de variáveis: define as cores e valores reutilizados no site.
+  Isso facilita manutenção e padronização visual.
+*/
+:root {
+  --bg: #f3f6fb;            /* Fundo geral */
+  --surface: #ffffff;       /* Fundo dos cards e blocos */
+  --surface-soft: #eef3ff;  /* Fundo suave para interações */
+  --primary: #1d4ed8;       /* Azul principal */
+  --primary-dark: #163ea8;  /* Azul mais escuro */
+  --primary-soft: #dfe9ff; /* Azul bem claro */
+  --text: #1f2937;          /* Cor principal do texto */
+  --muted: #52607a;         /* Texto secundário */
+  --border: #dfe5f0;       /* Bordas suaves */
+  --shadow: rgba(15, 23, 42, 0.08); /* Sombra leve */
+}
+
+/* 
+  Reset básico: remove margens e paddings padrões do navegador
+  e faz com que o box-sizing considere padding e borda no cálculo do tamanho.
+*/
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* 
+  Suaviza a rolagem da página ao clicar em links internos.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+/* 
+  Estilo base do corpo da página:
+  - fonte padrão
+  - fundo com gradiente
+  - cor do texto
+  - altura de linha para melhor leitura
+*/
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    line-height: 1.6;
-    color: #2b2b2b;
-    background-color: #f9f9fb;
-    
-    /* Centraliza o conteúdo e ajusta a largura máxima para leitura confortável */
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 24px 16px;
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: linear-gradient(180deg, #f7f9fc 0%, #eef4ff 100%);
+  color: var(--text);
+  line-height: 1.7;
 }
 
-/* Imagem da logo/banner */
+/* 
+  Ajusta as imagens para ficarem responsivas.
+  max-width: 100% evita que a imagem ultrapasse o container.
+*/
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto 32px auto;
-    border-radius: 8px;
+  max-width: 100%;
+  display: block;
+  margin: 0 auto 2rem;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px var(--shadow);
 }
 
-/* Vídeo do YouTube Responsivo */
+/* 
+  Ajusta vídeos embutidos (como do YouTube) para manter proporção correta.
+  aspect-ratio: 16 / 9 faz o vídeo ficar responsivo.
+*/
 iframe {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
-    border: none;
-    border-radius: 8px;
-    margin: 20px 0 30px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 14px;
+  margin: 1.2rem 0 2rem;
+  box-shadow: 0 10px 25px var(--shadow);
 }
 
-/* Estilização dos títulos */
-h1 {
-    font-size: 2.2rem;
-    color: #1a1a1a;
-    margin-bottom: 16px;
-    line-height: 1.25;
+/* 
+  Estilo do cabeçalho principal da página.
+  position: sticky faz o menu ficar fixo ao rolar a página.
+*/
+header.site-header {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
-/* Parágrafos */
-p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    text-align: justify;
+/* 
+  Container de navegação.
+  max-width centraliza o menu e limita sua largura.
+*/
+nav {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1.25rem;
 }
 
-/* Listas numeradas (ol) e não ordenadas (ul) */
-ol, ul {
-    margin: 0 0 24px 28px;
-}
-
-li {
-    margin-bottom: 12px;
-    font-size: 1.05rem;
-}
-
-strong {
-    color: #111;
-}
-
-/* Cabeçalho e Navegação */
-header {
-    margin-bottom: 24px;
-    border-bottom: 1px solid #e1e4e8;
-    padding-bottom: 16px;
-}
-
+/* 
+  Lista do menu.
+  display: flex organiza os links horizontalmente.
+  flex-wrap: wrap permite quebra em telas menores.
+*/
 nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
 }
 
+/* 
+  Estilo dos links do menu.
+  text-decoration: none remove o sublinhado.
+  padding ajuda a aumentar a área clicável.
+*/
 nav a {
-    text-decoration: none;
-    color: #0366d6;
-    font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  transition: all 0.2s ease;
 }
 
-nav a:hover {
-    text-decoration: underline;
+/* 
+  Efeito ao passar o mouse sobre os links do menu.
+*/
+nav a:hover,
+nav a:focus {
+  background: var(--surface-soft);
+  color: var(--primary-dark);
 }
 
-/* Rodapé e Botões */
-footer {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #e1e4e8;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px; /* Mantém um espaço de segurança se a tela for pequena */
+/* 
+  Wrapper que centraliza o conteúdo principal do site.
+  max-width limita a largura e padding cria espaço.
+*/
+.page-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
 }
 
-.btn {
-    display: inline-block;
-    padding: 10px 18px;
-    background-color: #0366d6;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
-    font-weight: 600;
-    transition: background-color 0.2s;
+/* 
+  Área principal do conteúdo.
+  background branco, borda suave e sombras para criar destaque.
+*/
+main {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(223, 229, 240, 0.9);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.06);
+  padding: 2rem 1.5rem;
 }
 
-.btn:hover {
-    background-color: #0056b3;
+/* 
+  Seção hero: área inicial com destaque.
+  Gradiente azul claro para chamar atenção para o título.
+*/
+.hero {
+  background: linear-gradient(135deg, var(--primary-soft), #f4f7ff);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
-/* Estilos para os Cartões de Playlist/Sumário */
+/* 
+  Estilo do título da seção hero.
+  clamp() torna o texto responsivo conforme a largura da tela.
+*/
+.hero h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+}
+
+/* 
+  Descrição da seção hero.
+*/
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+/* 
+  Estilo geral dos títulos h1, h2 e h3.
+*/
+h1,
+h2,
+h3 {
+  color: #111827;
+  line-height: 1.25;
+  margin-bottom: 1rem;
+}
+
+/* 
+  Título principal da página.
+*/
+h1 {
+  font-size: clamp(2rem, 3vw, 2.7rem);
+}
+
+/* 
+  Títulos secundários.
+*/
+h2 {
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+}
+
+/* 
+  Define cor e tamanho dos parágrafos e itens de lista.
+*/
+p,
+li {
+  color: var(--text);
+  font-size: 1.06rem;
+  line-height: 1.8;
+}
+
+/* 
+  Estilo dos parágrafos.
+  text-align: justify deixa o texto alinhado de forma mais limpa.
+*/
+p {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+
+/* 
+  Estilo das listas.
+  margin e padding ajustam o espaçamento interno.
+*/
+ol,
+ul {
+  margin: 0 0 1.5rem 1.5rem;
+  padding-left: 1rem;
+}
+
+/* 
+  Espaçamento entre os itens de lista.
+*/
+li {
+  margin-bottom: 0.6rem;
+}
+
+/* 
+  Realça textos em negrito.
+*/
+strong {
+  color: #111827;
+}
+
+/* 
+  Cartões de conteúdo e playlists.
+  Esses blocos servem para destacar blocos de informação.
+*/
+.content-card,
 .playlist-card {
-    background-color: #ffffff;
-    border: 1px solid #e1e4e8;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.35rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.04);
 }
 
+/* 
+  Ajusta o título interno dos cards.
+*/
 .playlist-card h2 {
-    font-size: 1.4rem;
-    color: #0366d6;
-    margin-bottom: 8px;
+  margin-bottom: 0.75rem;
 }
 
-.playlist-card p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 12px;
-}
-
+/* 
+  Ajusta a lista dentro do card.
+*/
 .playlist-card ul {
-    margin: 0 0 0 20px;
+  margin-left: 1.2rem;
 }
 
-.playlist-card a {
-    color: #2b2b2b;
-    font-weight: 600;
-    text-decoration: none;
+/* 
+  Estilo dos links dentro dos cards.
+*/
+.playlist-card a,
+.content-card a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 600;
 }
 
-.playlist-card a:hover {
-    color: #0366d6;
-    text-decoration: underline;
+/* 
+  Efeito ao passar o mouse sobre links dentro dos cards.
+*/
+.playlist-card a:hover,
+.content-card a:hover,
+.playlist-card a:focus,
+.content-card a:focus {
+  text-decoration: underline;
+}
+
+/* 
+  Rodapé da página.
+  border-top separa o rodapé do conteúdo.
+  display: flex organiza os itens em linha.
+*/
+.page-footer {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* 
+  Estilo dos botões.
+  background azul escuro, texto branco, bordas arredondadas.
+*/
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0.7rem 1.1rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 8px 16px rgba(29, 78, 216, 0.2);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+/* 
+  Efeito ao passar o mouse sobre o botão.
+*/
+.btn:hover,
+.btn:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(29, 78, 216, 0.28);
+}
+
+.playlist-card .btn,
+a.btn {
+  background: #0d6efd !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  padding: 12px 18px !important;
+  border-radius: 10px !important;
+}
+
+/* 
+  Classe auxiliar para texto mais suave.
+*/
+.muted {
+  color: var(--muted);
+}
+
+/* 
+  Media query para telas pequenas.
+  Ajusta layout e espaçamentos em dispositivos móveis.
+*/
+@media (max-width: 680px) {
+  nav ul {
+    justify-content: flex-start;
+  }
+
+  nav a {
+    padding: 0.45rem 0.6rem;
+  }
+
+  .page-shell {
+    padding: 1rem 0.85rem 3rem;
+  }
+
+  main {
+    padding: 1.2rem 1rem;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-footer .btn {
+    width: 100%;
+  }
 }
